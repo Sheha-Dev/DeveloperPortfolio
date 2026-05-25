@@ -1,1 +1,33 @@
-<p>full works!</p>
+<mat-card class="m-0 p-0">
+  <mat-card-content>
+    <div class="header-row bg-dark">
+      <div>
+        <h1>Dev Portfolio</h1>
+      </div>
+
+      <app-menu-bar (tabName)="selectedTab = $event"></app-menu-bar>
+    </div>
+
+    <div class="w-100">
+      <div *ngIf="selectedTab === 'Home'">
+        <p>Home works!</p>
+      </div>
+
+      <div *ngIf="selectedTab === 'About'">
+        <p>About works!</p>
+      </div>
+
+      <div *ngIf="selectedTab === 'Projects'">
+        <p>Projects works!</p>
+      </div>
+
+      <div *ngIf="selectedTab === 'Experience'">
+        <p>Experience works!</p>
+      </div>
+
+      <div *ngIf="selectedTab === 'Contact'">
+        <p>Contact works!</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
