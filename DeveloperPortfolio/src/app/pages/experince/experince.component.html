@@ -1,1 +1,59 @@
-<p>experince works!</p>
+<form [formGroup]="experienceForm">
+  <div class="experience-section">
+    <mat-accordion multi formArrayName="experiences">
+
+      <mat-expansion-panel
+        *ngFor="let experience of experiences.controls; let i = index"
+        [formGroupName]="i"
+        [expanded]="openedPanel === i"
+        (opened)="openedPanel = i"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ experience.get('role')?.value }}
+          </mat-panel-title>
+
+          <mat-panel-description>
+            {{ experience.get('duration')?.value }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="experience-content">
+          <div class="experience-details">
+
+            <h3>
+              {{ experience.get('company')?.value }}
+            </h3>
+
+            <a
+              [href]="experience.get('mapUrl')?.value"
+              target="_blank"
+              class="map-link"
+            >
+              📍 {{ experience.get('location')?.value }}
+            </a>
+
+            <div class="domain-badge">
+              {{ experience.get('domain')?.value }}
+            </div>
+
+            <div class="tech-stack">
+              <span *ngFor="let tech of experience.get('techStack')?.value">
+                {{ tech +',' }}
+              </span>
+            </div>
+
+            <ul>
+              <li *ngFor="let item of experience.get('responsibilities')?.value">
+                {{ item }}
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div>
+</form>
