@@ -2,7 +2,7 @@
 
   <!-- Desktop Tabs -->
   <mat-tab-group
-    *ngIf="!isMobile"
+    
     (selectedTabChange)="onTabChange($event)"
   >
     <mat-tab
@@ -12,7 +12,7 @@
   </mat-tab-group>
 
   <!-- Mobile Hamburger -->
-  <div *ngIf="isMobile" class="mobile-menu">
+  <div  class="mobile-menu">
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"

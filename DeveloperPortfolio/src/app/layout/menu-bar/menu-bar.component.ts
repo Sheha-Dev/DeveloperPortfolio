@@ -19,7 +19,7 @@ import { OutletContext } from '@angular/router';
 export class MenuBarComponent {
   @Output() tabName = new EventEmitter<any>();
 
-  isMobile = window.innerWidth <= 768;
+
 
   tabs = [
     { label: 'Home' },
@@ -29,10 +29,10 @@ export class MenuBarComponent {
     { label: 'Contact' }
   ];
 
-  @HostListener('window:resize')
-  onResize() {
-    this.isMobile = window.innerWidth <= 768;
-  }
+  // @HostListener('window:resize')
+  // onResize() {
+  //   this.isMobile = window.innerWidth <= 768;
+  // }
 
   onTabChange(event: MatTabChangeEvent) {
     console.log(event.index);
