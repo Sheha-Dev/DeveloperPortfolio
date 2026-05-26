@@ -1,1 +1,50 @@
-<p>home works!</p>
+<form [formGroup]="aboutForm">
+  <div class="row about-section">
+
+    <div class="col-lg-6 col-md-12 about-image">
+      <div class="image-ring">
+        <img
+          [src]="f['imageUrl'].value"
+          [alt]="f['altText'].value"
+        >
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 about-content">
+
+      <h1>
+        {{ f['greeting'].value }} <br>
+        <span>{{ f['name'].value }}</span>
+      </h1>
+
+      <p class="about-description">
+        {{ f['descriptionOne'].value }}
+      </p>
+
+      <p class="about-description">
+        {{ f['descriptionTwo'].value }}
+      </p>
+
+      <div class="social-links">
+        <a
+          [href]="f['githubUrl'].value"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-btn"
+        >
+          <i class="ti ti-brand-github"></i>
+        </a>
+
+        <a
+          [href]="f['linkedinUrl'].value"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-btn"
+        >
+          <i class="ti ti-brand-linkedin"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</form>
