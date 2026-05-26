@@ -1,32 +1,38 @@
-<mat-card class="m-0 p-0">
+<mat-card class="m-0 p-0 app-container">
   <mat-card-content>
-    <div class="header-row bg-dark">
-      <div>
+    <div class="header-row">
+      <div class="headerTitle">
         <h1>Dev Portfolio</h1>
       </div>
 
       <app-menu-bar (tabName)="selectedTab = $event"></app-menu-bar>
     </div>
 
-    <div class="w-100">
-      <div *ngIf="selectedTab === 'Home'">
-        <p>Home works!</p>
+
+
+    <div class="w-100 p-400">
+      <div *ngIf="screenWidth < 768">
+               <h3>{{selectedTab}}</h3> 
       </div>
 
-      <div *ngIf="selectedTab === 'About'">
-        <p>About works!</p>
+      <div *ngIf="selectedTab === 'Home'">
+        <app-home></app-home>
+      </div>
+
+      <div *ngIf="selectedTab === 'Education'">
+        <app-education></app-education>
       </div>
 
       <div *ngIf="selectedTab === 'Projects'">
-        <p>Projects works!</p>
+        <app-projects></app-projects>
       </div>
 
       <div *ngIf="selectedTab === 'Experience'">
-        <p>Experience works!</p>
+        <app-experince></app-experince>
       </div>
 
       <div *ngIf="selectedTab === 'Contact'">
-        <p>Contact works!</p>
+        <app-contact></app-contact>
       </div>
     </div>
   </mat-card-content>
