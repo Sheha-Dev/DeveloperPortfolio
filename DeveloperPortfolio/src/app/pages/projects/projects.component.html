@@ -1,1 +1,94 @@
-<p>projects works!</p>
+<form [formGroup]="projectForm">
+  <div formArrayName="projects">
+
+    <mat-expansion-panel
+      *ngFor="let project of projects.controls; let i = index"
+      [formGroupName]="i"
+      [expanded]="openedPanel === i"
+      (opened)="openedPanel = i"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ project.get('title')?.value }}
+        </mat-panel-title>
+
+        <mat-panel-description>
+          {{ project.get('duration')?.value }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="row project-content">
+
+        <div class="col-xl-6 col-lg-12 project-carousel">
+          <button
+            type="button"
+            class="nav-btn"
+            (click)="prevImage(i)"
+          >
+            ❮
+          </button>
+
+          <img
+            [src]="project.get('images')?.value[project.get('currentImageIndex')?.value]"
+            [alt]="project.get('title')?.value"
+          >
+
+          <button
+            type="button"
+            class="nav-btn"
+            (click)="nextImage(i)"
+          >
+            ❯
+          </button>
+        </div>
+
+        <div class="col-xl-6 col-lg-12 project-details">
+
+          <p>
+            {{ project.get('description')?.value }}
+          </p>
+
+          <div class="tech-stack">
+            <span *ngFor="let tech of project.get('techStack')?.value">
+              {{ tech }}
+            </span>
+          </div>
+
+          <div
+            class="project-links"
+            *ngIf="project.get('showLinks')?.value"
+          >
+            <a
+              [href]="project.get('liveUrl')?.value"
+              target="_blank"
+            >
+              Live Demo
+            </a>
+
+            <a
+              [href]="project.get('githubUrl')?.value"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          </div>
+
+          <div
+            class="project-badge"
+            *ngIf="project.get('badge')?.value"
+          >
+            {{ project.get('badge')?.value }}
+          </div>
+
+          <ul>
+            <li *ngFor="let bullet of project.get('bullets')?.value">
+              {{ bullet }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+  </div>
+</form>
