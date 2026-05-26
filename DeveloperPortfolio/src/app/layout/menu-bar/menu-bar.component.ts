@@ -7,39 +7,40 @@ import { OutletContext } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
-  imports: [
-    MatTabsModule,
-    CommonModule,
-    MatMenuModule,
-    MatButtonModule
-  ],
+  imports: [MatTabsModule, CommonModule, MatMenuModule, MatButtonModule],
   templateUrl: './menu-bar.component.html',
-  styleUrl: './menu-bar.component.scss'
+  styleUrl: './menu-bar.component.scss',
 })
 export class MenuBarComponent {
   @Output() tabName = new EventEmitter<any>();
-
-
 
   tabs = [
     { label: 'Home' },
     { label: 'Education' },
     { label: 'Projects' },
     { label: 'Experience' },
-    { label: 'Contact' }
+    { label: 'Contact' },
   ];
 
-  // @HostListener('window:resize')
-  // onResize() {
-  //   this.isMobile = window.innerWidth <= 768;
-  // }
+  width = window.innerWidth;
+  height = window.innerHeight;
 
-  onTabChange(event: MatTabChangeEvent) {
-    console.log(event.index);
-    // your existing navigation logic
+  get screenWidth(): number {
+    return window.innerWidth;
   }
 
-  selectMenuTab(index: number) {
+  onTabChange(event: MatTabChangeEvent) {
+  
+    if (this.screenWidth > 768) {
+      this.tabName.emit(event.tab.textLabel);
+    }
+  }
+
+  selectMenuTab(index: number, tab: string) {
     this.onTabChange({ index } as MatTabChangeEvent);
+
+    if (this.screenWidth < 768) {
+      this.tabName.emit(tab);
+    }
   }
 }

@@ -2,7 +2,6 @@
 
   <!-- Desktop Tabs -->
   <mat-tab-group
-    
     (selectedTabChange)="onTabChange($event)"
   >
     <mat-tab
@@ -25,7 +24,7 @@
       <button
         mat-menu-item
         *ngFor="let tab of tabs; let i = index"
-        (click)="selectMenuTab(i)"
+        (click)="selectMenuTab(i,tab.label)"
       >
         {{ tab.label }}
       </button>
