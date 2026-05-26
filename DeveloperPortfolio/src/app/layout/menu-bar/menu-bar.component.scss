@@ -1,0 +1,21 @@
+.navigation-container {
+  width: 100%;
+}
+
+.mobile-menu {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 16px;
+}
+
+@media (max-width: 768px) {
+  mat-tab-group {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+}

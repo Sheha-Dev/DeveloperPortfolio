@@ -1,7 +1,35 @@
-<mat-tab-group (selectedTabChange)="onTabChange($event)">
-  <mat-tab label="Home"> </mat-tab>
-  <mat-tab label="About"> </mat-tab>
-  <mat-tab label="Projects"> </mat-tab>
-  <mat-tab label="Experience"> </mat-tab>
-  <mat-tab label="Contact"> </mat-tab>
-</mat-tab-group>
+<div class="navigation-container">
+
+  <!-- Desktop Tabs -->
+  <mat-tab-group
+    *ngIf="!isMobile"
+    (selectedTabChange)="onTabChange($event)"
+  >
+    <mat-tab
+      *ngFor="let tab of tabs"
+      [label]="tab.label">
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Mobile Hamburger -->
+  <div *ngIf="isMobile" class="mobile-menu">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Navigation Menu"
+    >
+      <i class="ti ti-menu-2"></i>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let tab of tabs; let i = index"
+        (click)="selectMenuTab(i)"
+      >
+        {{ tab.label }}
+      </button>
+    </mat-menu>
+  </div>
+
+</div>
