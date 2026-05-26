@@ -1,0 +1,49 @@
+<form [formGroup]="educationForm">
+  <div class="education-section">
+    <mat-accordion formArrayName="educationList">
+
+      <mat-expansion-panel
+        *ngFor="let education of educationList.controls; let i = index"
+        [formGroupName]="i"
+        [expanded]="openedPanel === i"
+        (opened)="openedPanel = i"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title >
+            <span class="highlight-title">
+              {{ education.get('title')?.value }}
+            </span>
+          </mat-panel-title>
+
+          <mat-panel-description >
+            {{ education.get('period')?.value }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="education-content">
+          <div class="education-details">
+            <h3>{{ education.get('institute')?.value }}</h3>
+
+            <a
+              [href]="education.get('mapUrl')?.value"
+              target="_blank"
+              class="map-link"
+            >
+              📍 {{ education.get('location')?.value }}
+            </a>
+
+            <div class="education-badge">
+              {{ education.get('badge')?.value }}
+            </div>
+
+            <p>
+              {{ education.get('description')?.value }}
+            </p>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div>
+</form>
