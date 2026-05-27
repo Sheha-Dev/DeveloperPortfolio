@@ -17,45 +17,18 @@
       </mat-expansion-panel-header>
 
       <div class="row project-content">
-        <!-- <div class="col-xl-6 col-lg-12 project-carousel">
-          <button
-            type="button"
-            class="nav-btn"
-            (click)="prevImage(i)"
-          >
-            ❮
-          </button>
-
-          <img
-            [src]="project.get('images')?.value[project.get('currentImageIndex')?.value]"
-            [alt]="project.get('title')?.value"
-          >
-
-          <button
-            type="button"
-            class="nav-btn"
-            (click)="nextImage(i)"
-          >
-            ❯
-          </button>
-        </div> -->
-
+        <!-- Carousel -->
         <div class="col-xl-6 col-lg-12 project-carousel border border-3 rounded p-3">
-          <!-- Show carousel only if images exist -->
-          <ng-container
-            *ngIf="project.get('images')?.value?.length > 0; else noImages"
-          >
+          <ng-container *ngIf="project.get('images')?.value?.length > 0; else noImages">
             <button type="button" class="nav-btn" (click)="prevImage(i)">
               ❮
             </button>
 
             <img
-              [src]="
-                project.get('images')?.value[
-                  project.get('currentImageIndex')?.value
-                ]
-              "
+              class="clickable-image"
+              [src]="project.get('images')?.value[project.get('currentImageIndex')?.value]"
               [alt]="project.get('title')?.value"
+              (click)="openImagePreview(project.get('images')?.value[project.get('currentImageIndex')?.value])"
             />
 
             <button type="button" class="nav-btn" (click)="nextImage(i)">
@@ -63,7 +36,6 @@
             </button>
           </ng-container>
 
-          <!-- Fallback when no images -->
           <ng-template #noImages>
             <div class="no-images border border-3 rounded p-3 text-center">
               No images available
@@ -71,6 +43,7 @@
           </ng-template>
         </div>
 
+        <!-- Details -->
         <div class="col-xl-6 col-lg-12 project-details">
           <p>
             {{ project.get("description")?.value }}
@@ -82,7 +55,8 @@
             </span>
           </div>
 
-          <div class="project-links" *ngIf="project.get('showLinks')?.value">
+          <!-- Show links if public -->
+          <div class="project-links" *ngIf="project.get('showLinks')?.value; else companyProject">
             <a [href]="project.get('liveUrl')?.value" target="_blank">
               Live Demo
             </a>
@@ -91,6 +65,13 @@
               GitHub
             </a>
           </div>
+
+          <!-- Show badge if company project -->
+          <ng-template #companyProject>
+            <div class="company-project-badge">
+              Company Project
+            </div>
+          </ng-template>
 
           <div class="project-badge" *ngIf="project.get('badge')?.value">
             {{ project.get("badge")?.value }}
@@ -106,3 +87,16 @@
     </mat-expansion-panel>
   </div>
 </form>
+
+<!-- Image Popup Modal -->
+<div
+  class="image-modal"
+  *ngIf="selectedImage"
+  (click)="closeImagePreview()"
+>
+  <img
+    [src]="selectedImage"
+    class="modal-image"
+    (click)="$event.stopPropagation()"
+  />
+</div>
