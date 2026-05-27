@@ -36,8 +36,7 @@ export class ProjectsComponent {
           'Implemented JWT-based authentication and authorization',
         ],
         images: [
-          'assets/images/projects/sanasa/1.png',
-          'assets/images/projects/sanasa/2.png',
+          
         ],
         showLinks: false,
         githubUrl: '',
@@ -89,8 +88,7 @@ export class ProjectsComponent {
           'Used identity management package',
         ],
         images: [
-          'assets/images/projects/auth/1.png',
-          'assets/images/projects/auth/2.png',
+          
         ],
         showLinks: false,
         githubUrl: '',
